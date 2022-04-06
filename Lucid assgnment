@@ -1,0 +1,179 @@
+USER VALIDATION::
+
+while [[ -z $user ]]
+do
+echo "Enter the user name : "
+read user
+done
+
+echo
+echo "Validating the $user ..."
+if [[ `grep -c $user /etc/passwd` -eq 0 ]]
+then
+   echo
+   echo "ERROR : PLEASE ENTER A VALID USERNAME."
+   echo "Exiting ..."
+   exit 1
+else
+   echo
+   echo "$user IS A VALID USER."
+   echo "Checking whether the $user is logged on or not ..."
+   echo
+fi
+
+if [[ `who | grep -c $user` -eq 0 ]]
+then
+   echo
+   echo "$user IS NOT LOGGED INTO THE SERVER !!!"
+   echo
+   exit 0
+else
+   echo
+   echo "$user IS LOGGED INTO THE SERVER !!!"
+   echo
+fi
+
+
+###########To check inbound and outbound Processed and unprocedssed files Daily#####################
+#!/bin/bash
+CDATE=$(date "+%Y%m%d %I%p")
+LEVEL2_DIS="dlslssdcssg@acs-inc.com"
+echo ""
+echo "EXECUTING rundaily.sh.   Version : 02/03/2022"
+echo ""
+echo "------------------------------------------------------------"
+echo "ITEM 1 : (Mon-Fri + Weekends) Unprocessed Files                                  "
+echo "------------------------------------------------------------"
+echo "Checking... /app/vector/bata/ictx/unprocessed";                 ls -l /app/vector/bata/ictx/unprocessed
+echo "Checking... /app/vector/bata/data_files/coll_from/unprocessed"; ls -l /app/vector/bata/data_files/coll_from/unprocessed
+echo "Checking... /app/vector/bata/data_files/ts/to_ggbd/unproc";     ls -l /app/vector/bata/data_files/ts/to_ggbd/unproc
+echo "Checking... /app/vector/bata/data_files/ts/to_S237/unprocessed";ls -l /app/vector/bata/data_files/ts/to_S237/unprocessed
+echo "Checking... /app/vector/bata/data_files/ts/to_accm/unproc";     ls -l /app/vector/bata/data_files/ts/to_accm/unproc
+echo "Checking... /app/vector/bata/data_files/ts/to_sfop/unproc";     ls -l /app/vector/bata/data_files/ts/to_sfop/unproc
+echo "Checking... /app/vector/bata/data_files/ts/to_atcas/unproc";    ls -l /app/vector/bata/data_files/ts/to_atcas/unproc
+echo "Checking... /app/vector/bata/data_files/ts/to_ctoc/unproc";     ls -l /app/vector/bata/data_files/ts/to_ctoc/unproc
+echo "Checking... /app/vector/bata/data_files/ts/to_s237/unproc";     ls -l /app/vector/bata/data_files/ts/to_s237/unproc
+echo "Checking... /app/vector/bata/data_files/ts/to_calt/unproc";     ls -l /app/vector/bata/data_files/ts/to_calt/unproc
+echo "Checking... /app/vector/bata/data_files/ts/to_calt/unprocessed";ls -l /app/vector/bata/data_files/ts/to_calt/unprocessed
+echo "Checking... /app/vector/bata/data_files/pps/to/unprocessed";    ls -l /app/vector/bata/data_files/pps/to/unprocessed
+echo "Checking... /app/vector/bata/data_files/pps/from/unprocessed";  ls -l /app/vector/bata/data_files/pps/from/unprocessed
+echo "Checking... /app/vector/bata/data_files/dmv_from/unprocessed";  ls -l /app/vector/bata/data_files/dmv_from/unprocessed
+echo "Checking... /app/vector/bata/data_files/ext_tab/unproc";        ls -l /app/vector/bata/data_files/ext_tab/unproc
+echo "Checking... /app/vector/bata/data_files/calt/txn/unproc";       ls -l /app/vector/bata/data_files/calt/txn/unproc
+echo "Checking... /app/vector/bata/data_files/calt/to/unproc";        ls -l /app/vector/bata/data_files/calt/to/unproc
+echo "Checking... /app/vector/bata/data_files/calt/res/unprocessed";     ls -l /app/vector/bata/data_files/calt/res/unprocessed
+echo "Checking... /app/vector/bata/data_files/calt/thread2_txn/unproc";  ls -l /app/vector/bata/data_files/calt/thread2_txn/unproc
+echo "Checking... /app/vector/bata/data_files/calt/cres/unprocessed";    ls -l /app/vector/bata/data_files/calt/cres/unprocessed
+echo "Checking... /app/vector/bata/data_files/calt/thread3_txn/unproc";  ls -l /app/vector/bata/data_files/calt/thread3_txn/unproc
+echo "Checking... /app/vector/bata/data_files/calt/to_atcas/unprocessed";ls -l /app/vector/bata/data_files/calt/to_atcas/unprocessed
+echo "Checking... /app/vector/bata/data_files/calt/from/unproc";         ls -l /app/vector/bata/data_files/calt/from/unproc
+echo "Checking... /app/vector/bata/data_files/calt/ack/unproc";          ls -l /app/vector/bata/data_files/calt/ack/unproc
+echo "Checking... /app/vector/bata/data_files/cashcard/unprocessed";     ls -l /app/vector/bata/data_files/cashcard/unprocessed
+echo "Checking... /app/vector/bata/data_files/itol_notice/unprocessed";  ls -l /app/vector/bata/data_files/itol_notice/unprocessed
+echo "Checking... /app/vector/bata/data_files/skip_tracing_to/unprocessed"; ls -l /app/vector/bata/data_files/skip_tracing_to/unprocessed
+echo "Checking... /app/vector/bata/data_files/inrx/unprocessed";       ls -l /app/vector/bata/data_files/inrx/unprocessed
+echo "Checking... /app/vector/bata/data_files/qatp_output/unprocessed";ls -l /app/vector/bata/data_files/qatp_output/unprocessed
+echo "Checking... /app/vector/bata/data_files/fnrx/unprocessed";       ls -l /app/vector/bata/data_files/fnrx/unprocessed
+echo "Checking... /app/vector/bata/data_files/atcas/vres/unprocessed"; ls -l /app/vector/bata/data_files/atcas/vres/unprocessed
+echo "Checking... /app/vector/bata/data_files/mh_to/unprocessed";     ls -l /app/vector/bata/data_files/mh_to/unprocessed
+echo "Checking... /app/vector/bata/data_files/s237/txn/unproc";       ls -l /app/vector/bata/data_files/s237/txn/unproc
+echo "Checking... /app/vector/bata/data_files/s237/to/unproc";        ls -l /app/vector/bata/data_files/s237/to/unproc
+echo "Checking... /app/vector/bata/data_files/s237/res/unprocessed";  ls -l /app/vector/bata/data_files/s237/res/unprocessed
+echo "Checking... /app/vector/bata/data_files/s237/from/unproc";      ls -l /app/vector/bata/data_files/s237/from/unproc
+echo "Checking... /app/vector/bata/data_files/s237/ack/unproc";       ls -l /app/vector/bata/data_files/s237/ack/unproc
+echo "Checking... /app/vector/bata/data_files/itag/tgst/unprocessed"; ls -l /app/vector/bata/data_files/itag/tgst/unprocessed
+echo "Checking... /app/vector/bata/data_files/itag/iclp/unprocessed"; ls -l /app/vector/bata/data_files/itag/iclp/unprocessed
+echo "Checking... /app/vector/bata/data_files/itag/load/unprocessed"; ls -l /app/vector/bata/data_files/itag/load/unprocessed
+echo "Checking... /app/vector/bata/data_files/itag/unprocessed";      ls -l /app/vector/bata/data_files/itag/unprocessed
+echo "Checking... /app/vector/bata/data_files/dmvhold_to/rel/unprocessed"; ls -l /app/vector/bata/data_files/dmvhold_to/rel/unprocessed
+echo "Checking... /app/vector/bata/data_files/dmvhold_to/hld/unprocessed"; ls -l /app/vector/bata/data_files/dmvhold_to/hld/unprocessed
+echo "Checking... /app/vector/bata/data_files/ictx/unprocessed";     ls -l /app/vector/bata/data_files/ictx/unprocessed
+echo "Checking... /app/vector/bata/data_files/eps_from/unprocessed"; ls -l /app/vector/bata/data_files/eps_from/unprocessed
+echo "Checking... /app/vector/bata/data_files/bps_from/unprocessed"; ls -l /app/vector/bata/data_files/bps_from/unprocessed
+echo "Checking... /app/vector/bata/data_files/itxc_from/unprocessed";ls -l /app/vector/bata/data_files/itxc_from/unprocessed
+echo "Checking... /app/vector/bata/data_files/rtl/to/unprocessed";   ls -l /app/vector/bata/data_files/rtl/to/unprocessed
+echo "Checking... /app/vector/bata/data_files/rtl/from/unprocessed"; ls -l /app/vector/bata/data_files/rtl/from/unprocessed
+echo "Checking... /app/vector/bata/data_files/hta/to/unprocessed";   ls -l /app/vector/bata/data_files/hta/to/unprocessed
+echo "Checking... /app/vector/bata/data_files/hta/from/unprocessed"; ls -l /app/vector/bata/data_files/hta/from/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_from/unprocessed";  ls -l /app/vector/bata/data_files/ia_from/unprocessed
+echo "Checking... /app/vector/bata/data_files/accm/ts/unprocessed";  ls -l /app/vector/bata/data_files/accm/ts/unprocessed
+echo "Checking... /app/vector/bata/data_files/accm/txn/unproc";      ls -l /app/vector/bata/data_files/accm/txn/unproc
+echo "Checking... /app/vector/bata/data_files/accm/to/unproc";       ls -l /app/vector/bata/data_files/accm/to/unproc
+echo "Checking... /app/vector/bata/data_files/accm/res/unprocessed"; ls -l /app/vector/bata/data_files/accm/res/unprocessed
+echo "Checking... /app/vector/bata/data_files/accm/from/unproc";     ls -l /app/vector/bata/data_files/accm/from/unproc
+echo "Checking... /app/vector/bata/data_files/accm/ack/unproc";      ls -l /app/vector/bata/data_files/accm/ack/unproc
+echo "Checking... /app/vector/bata/data_files/t/unprocessed";        ls -l /app/vector/bata/data_files/t/unprocessed
+echo "Checking... /app/vector/bata/data_files/rev_mgmt/unprocessed"; ls -l /app/vector/bata/data_files/rev_mgmt/unprocessed
+echo "Checking... /app/vector/bata/data_files/tt/unprocessed";       ls -l /app/vector/bata/data_files/tt/unprocessed
+echo "Checking... /app/vector/bata/data_files/skip_tracing_from/unprocessed"; ls -l /app/vector/bata/data_files/skip_tracing_from/unprocessed
+echo "Checking... /app/vector/bata/data_files/iclp/unprocessed";     ls -l /app/vector/bata/data_files/iclp/unprocessed
+echo "Checking... /app/vector/bata/data_files/eps_to/025/unprocessed"; ls -l /app/vector/bata/data_files/eps_to/025/unprocessed
+echo "Checking... /app/vector/bata/data_files/eps_to/128/unprocessed"; ls -l /app/vector/bata/data_files/eps_to/128/unprocessed
+echo "Checking... /app/vector/bata/data_files/eps_to/016/unprocessed"; ls -l /app/vector/bata/data_files/eps_to/016/unprocessed
+echo "Checking... /app/vector/bata/data_files/eps_to/026/unprocessed"; ls -l /app/vector/bata/data_files/eps_to/026/unprocessed
+echo "Checking... /app/vector/bata/data_files/eps_to/008/unprocessed"; ls -l /app/vector/bata/data_files/eps_to/008/unprocessed
+echo "Checking... /app/vector/bata/data_files/eps_to/019/unprocessed"; ls -l /app/vector/bata/data_files/eps_to/019/unprocessed
+echo "Checking... /app/vector/bata/data_files/eps_to/022/unprocessed"; ls -l /app/vector/bata/data_files/eps_to/022/unprocessed
+echo "Checking... /app/vector/bata/data_files/eps_to/132/unprocessed"; ls -l /app/vector/bata/data_files/eps_to/132/unprocessed
+echo "Checking... /app/vector/bata/data_files/eps_to/131/unprocessed"; ls -l /app/vector/bata/data_files/eps_to/131/unprocessed
+echo "Checking... /app/vector/bata/data_files/eps_to/029/unprocessed"; ls -l /app/vector/bata/data_files/eps_to/029/unprocessed
+echo "Checking... /app/vector/bata/data_files/icrx/unprocessed";       ls -l /app/vector/bata/data_files/icrx/unprocessed
+echo "Checking... /app/vector/bata/data_files/moneygram/unprocessed";  ls -l /app/vector/bata/data_files/moneygram/unprocessed
+echo "Checking... /app/vector/bata/data_files/special/unprocessed";    ls -l /app/vector/bata/data_files/special/unprocessed
+echo "Checking... /app/vector/bata/data_files/dmvhold_from/rel/unprocessed"; ls -l /app/vector/bata/data_files/dmvhold_from/rel/unprocessed
+echo "Checking... /app/vector/bata/data_files/dmvhold_from/hld/unprocessed"; ls -l /app/vector/bata/data_files/dmvhold_from/hld/unprocessed
+echo "Checking... /app/vector/bata/data_files/dmvhold_from/unprocessed"; ls -l /app/vector/bata/data_files/dmvhold_from/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/025/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/025/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/sf/unprocessed";  ls -l /app/vector/bata/data_files/ia_to/sf/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/tc/unprocessed";  ls -l /app/vector/bata/data_files/ia_to/tc/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/013/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/013/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/006/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/006/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/016/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/016/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/030/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/030/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/021/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/021/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/009/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/009/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/008/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/008/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/la/unprocessed";  ls -l /app/vector/bata/data_files/ia_to/la/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/015/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/015/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/019/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/019/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/024/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/024/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/022/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/022/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/sd/unprocessed";  ls -l /app/vector/bata/data_files/ia_to/sd/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/cv/unprocessed";  ls -l /app/vector/bata/data_files/ia_to/cv/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/010/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/010/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/unprocessed";     ls -l /app/vector/bata/data_files/ia_to/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/sr/unprocessed";  ls -l /app/vector/bata/data_files/ia_to/sr/unprocessed
+echo "Checking... /app/vector/bata/data_files/ia_to/033/unprocessed"; ls -l /app/vector/bata/data_files/ia_to/033/unprocessed
+echo "Checking... /app/vector/bata/data_files/dmv_to/unprocessed";    ls -l /app/vector/bata/data_files/dmv_to/unprocessed
+echo "Checking... /app/vector/bata/data_files/ats/to/unprocessed";    ls -l /app/vector/bata/data_files/ats/to/unprocessed
+echo "Checking... /app/vector/bata/data_files/ats/from/unprocessed";  ls -l /app/vector/bata/data_files/ats/from/unprocessed
+echo "Checking... /app/vector/bata/data_files/ggbd/txn/unproc";       ls -l /app/vector/bata/data_files/ggbd/txn/unproc
+echo "Checking... /app/vector/bata/data_files/ggbd/vres/unprocessed"; ls -l /app/vector/bata/data_files/ggbd/vres/unprocessed
+echo "Checking... /app/vector/bata/data_files/ggbd/to/unproc";        ls -l /app/vector/bata/data_files/ggbd/to/unproc
+echo "Checking... /app/vector/bata/data_files/ggbd/res/unprocessed";  ls -l /app/vector/bata/data_files/ggbd/res/unprocessed
+echo "Checking... /app/vector/bata/data_files/ggbd/thread2_txn/unproc"; ls -l /app/vector/bata/data_files/ggbd/thread2_txn/unproc
+echo "Checking... /app/vector/bata/data_files/ggbd/from/unproc";      ls -l /app/vector/bata/data_files/ggbd/from/unproc
+echo "Checking... /app/vector/bata/data_files/ggbd/ack/unproc";       ls -l /app/vector/bata/data_files/ggbd/ack/unproc
+echo "Checking... /app/vector/bata/data_files/irxc/unprocessed";      ls -l /app/vector/bata/data_files/irxc/unprocessed
+echo "Checking... /app/vector/bata/data_files/pa_src/unprocessed";    ls -l /app/vector/bata/data_files/pa_src/unprocessed
+echo "Checking... /app/vector/bata/data_files/ccs/to/unprocessed";    ls -l /app/vector/bata/data_files/ccs/to/unprocessed
+echo "Checking... /app/vector/bata/data_files/ccs/from/unprocessed";  ls -l /app/vector/bata/data_files/ccs/from/unprocessed
+echo "Checking... /app/vector/bata/data_files/fleet/plate/unprocessed"; ls -l /app/vector/bata/data_files/fleet/plate/unprocessed
+echo "Checking... /app/vector/bata/data_files/addr_from/unprocessed"; ls -l /app/vector/bata/data_files/addr_from/unprocessed
+echo "Checking... /app/vector/bata/data_files/bps/to/unprocessed";    ls -l /app/vector/bata/data_files/bps/to/unprocessed
+echo "Checking... /app/vector/bata/data_files/bps/from/unprocessed";  ls -l /app/vector/bata/data_files/bps/from/unprocessed
+echo "Checking... /app/vector/bata/data_files/rental_to/unprocessed"; ls -l /app/vector/bata/data_files/rental_to/unprocessed
+echo "Checking... /app/vector/bata/data_files/ack/iag/unprocessed";   ls -l /app/vector/bata/data_files/ack/iag/unprocessed
+echo "Checking... /app/vector/bata/data_files/ack/proc_ack/unprocessed"; ls -l /app/vector/bata/data_files/ack/proc_ack/unprocessed
+echo "Checking... /app/vector/bata/data_files/ack/proc_eps/unprocessed"; ls -l /app/vector/bata/data_files/ack/proc_eps/unprocessed
+echo "Checking... /app/vector/bata/data_files/bps_to/unprocessed";      ls -l /app/vector/bata/data_files/bps_to/unprocessed
+echo "Checking... /app/vector/bata/data_files/spx_load/unprocessed";    ls -l /app/vector/bata/data_files/spx_load/unprocessed
+echo "Checking... /app/vector/bata/data_files/rental_from/unprocessed"; ls -l /app/vector/bata/data_files/rental_from/unprocessed
+echo "Checking... /app/vector/bata/images/ggb/client01/unprocessed";    ls -l /app/vector/bata/images/ggb/client01/unprocessed
+echo "Checking... /app/vector/bata/images/caltran/client01/unprocessed";ls -l /app/vector/bata/images/caltran/client01/unprocessed
+echo "Checking... /app/vector/bata/images/unproc";                      ls -l /app/vector/bata/images/unproc
+echo ""
+echo "End of script: rundaily.sh"
+exit 0;
+
+==========
